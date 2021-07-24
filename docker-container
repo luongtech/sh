@@ -1,0 +1,7 @@
+docker run --name afi -p 5432:5432  -e POSTGRES_USER=ale -e POSTGRES_PASSWORD=password -e POSTGRES_DB=afi -d postgres
+
+docker run --name mongo -d mongo
+
+docker pull jenkins/jenkins
+docker run -p 8080:8080 -p 50000:50000 --name=jenkins-master -d jenkins/jenkins
+
