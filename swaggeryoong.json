@@ -1,14 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Yoong API",
-    "description": "This is Yoong Api",
-    "contact": {
-      "name": "Contact the Developer",
-      "url": "https://yoong.vn",
-      "email": ""
-    },
-    "version": "v1"
+    "title": "DragonX API",
+    "version": "1.2.4"
   },
   "paths": {
     "/api/Contact/SubmitContact": {
