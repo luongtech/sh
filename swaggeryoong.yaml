@@ -27,6 +27,35 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrderAllFundDto'
+  /api/Order/GetOrderVADetail:
+    get:
+      tags:
+        - Order
+      summary: Get VA order status
+      parameters:
+        - name: orderId
+          in: query
+          description: orderId
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderVaDetailDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderVaDetailDto'
+        '400':
+          description: Possible errors
+          content:
+            UserFriendlyException:
+              examples:
+                OrderId does not exist in the system:
+                  description: OrderId does not exist in the system
+                  value: '{"result":null,"targetUrl":null,"success":false,"error":{"code":0,"message":"OrderId does not exist","details":null,"validationErrors":null},"unAuthorizedRequest":false,"__abp":false}'
   /api/Order/AutoInvest/CreateISavingPlan:
     post:
       tags:
@@ -2756,6 +2785,55 @@ components:
           type: string
           nullable: true
           readOnly: true
+      additionalProperties: false
+    OrderVaDetailDto:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Order status code
+          nullable: true
+        statusStr:
+          type: string
+          description: Order status
+          nullable: true
+        paymentStatus:
+          type: string
+          description: Payment status
+          nullable: true
+        tradingdate:
+          type: string
+          description: Transaction date
+          format: date-time
+        orderAmt:
+          type: number
+          description: Order amount
+          format: double
+        receivedAmt:
+          type: number
+          description: Actual received amount
+          format: double
+        isCorrectContent:
+          type: string
+          description: Whether the transfer content is correct or not
+          nullable: true
+        paymentTime:
+          type: string
+          description: Transfer time
+          format: date-time
+          nullable: true
+        vAnumber:
+          type: string
+          description: VA number of the transfer
+          nullable: true
+        isMerge:
+          type: boolean
+          description: Whether it is a merged order (normal buy order)
+          nullable: true
+        mergedOrderId:
+          type: string
+          description: Order id of the merged order
+          nullable: true
       additionalProperties: false
     PartnerOrderListItemDto:
       type: object
